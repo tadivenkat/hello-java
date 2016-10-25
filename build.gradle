@@ -3,7 +3,8 @@ apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-mainClassName = "org.tadivenkat.HelloWorld"
+mainClassName = "org.tadivenkat.Main"
+run.args = [message]
 
 repositories {
    mavenCentral()

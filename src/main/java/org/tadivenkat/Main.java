@@ -1,8 +1,8 @@
 package org.tadivenkat;
 
-public class HelloWorld {
+public class Main {
    public static void main(String args[]) {
       GreetingService greetingService = new GreetingService();
-      System.out.println(greetingService.greet("Amma, Naanna"));
+      System.out.println(greetingService.greet(args[0]));
    }
 }
