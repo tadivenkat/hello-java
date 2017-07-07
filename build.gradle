@@ -12,6 +12,9 @@ repositories {
 
 dependencies {
    testCompile 'junit:junit:4.12'
+   compile 'org.springframework:spring-context:4.3.9.RELEASE'
+   compile 'org.springframework:spring-tx:4.3.9.RELEASE'
+   compile 'org.hibernate:hibernate-entitymanager:5.2.10.Final'
 }
 
 task wrapper(type : Wrapper) {
