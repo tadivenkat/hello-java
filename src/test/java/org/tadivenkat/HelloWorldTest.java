@@ -9,7 +9,7 @@ public class HelloWorldTest {
 
    @Before
    public void setup() {
-      greetingService = new GreetingService();
+      greetingService = new GreetingServiceImpl();
    }
 
    @Test
