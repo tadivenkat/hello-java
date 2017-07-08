@@ -3,6 +3,10 @@ apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
+sourceCompatibility = 1.8
+
+defaultTasks 'clean', 'uberjar', 'run'
+
 mainClassName = "org.tadivenkat.Main"
 run.args = [message]
 
@@ -11,10 +15,28 @@ repositories {
 }
 
 dependencies {
+   // Logging
+   compile group: 'log4j', name: 'log4j', version: '1.2.17'
+   compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+   compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.13'
    testCompile 'junit:junit:4.12'
    compile 'org.springframework:spring-context:4.3.9.RELEASE'
    compile 'org.springframework:spring-tx:4.3.9.RELEASE'
    compile 'org.hibernate:hibernate-entitymanager:5.2.10.Final'
+}
+
+task uberjar(type: Jar, dependsOn:[build]) {
+    manifest {
+        attributes 'Main-Class': 'org.tadivenkat.Main'
+    }   
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}} {
+        // When repackaging the jars, exclude signatures 
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
 }
 
 task wrapper(type : Wrapper) {
